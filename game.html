@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remember Card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: rgb(228, 220, 220);
+      display: grid;
+      place-items: center;
+      font-family: "Tilt Warp", cursive;
+    }
+
+    h1 {
+      margin: 50px 0 50px 0;
+      font-size: 5rem;
+      color: rgb(17, 225, 225);
+      -webkit-text-stroke: 0.5px black;
+    }
+
+    input {
+      margin-bottom: 20px;
+      padding: 5px;
+      font-size: 1.2rem;
+    }
+
+    button {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 30px;
+    }
+
+    #cont {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      grid-gap: 6px;
+    }
+
+    .btn {
+      font-size: 2rem;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      margin: 0;
+      background: transparent;
+      border-radius: 0;
+      transition: 0.8s;
+    }
+
+    #find {
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+      padding: 7px;
+      border-radius: 10px;
+      width: 250px;
+      background-color: rgb(0, 0, 0);
+    }
+
+    .btn:hover {
+      background-color: rgb(226, 228, 230);
+    }
+
+    button.enabled {
+      opacity: 1;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+
+    .btn-img {
+      width: 80%;
+      height: 80%;
+      display: none;
+      transition: 0.8s;
+    }
+    .hidden {
+      opacity: 0 !important;
+      cursor: default;
+    }
+    .show {
+      display: inline-block !important;
+    }
+    .my-turn {
+      color: deepskyblue;
+    }
+    .target-turn {
+      color: deepskyblue;
+    }
+  </style>
+
+  <body>
+    <h1>Remember Card</h1>
+
+    <div style="display: flex; width: 95vw; position: relative">
+      <p id="userCont">
+        You : <span id="user"></span> (<span id="user-score">0</span> คะแนน)
+      </p>
+      <p style="position: absolute; right: 0" id="oppNameCont">
+        Opponent : <span id="oppName"></span> (<span id="target-score">0</span>
+        คะแนน)
+      </p>
+    </div>
+    <br />
+    <div style="display: none">
+      <p id="valueCont">You are plaing as <span id="value"></span></p>
+      <br />
+      <p id="whosTurn">X's Turn</p>
+    </div>
+    <div>
+      <p style="font-size: 1.2rem" id="enterName">Enter your name :</p>
+
+      <input type="text" placeholder="Name" id="name" autocomplete="off" />
+    </div>
+    <button id="find">Search for a player</button>
+    <img id="loading" src="loading.gif" alt="" />
+
+    <div id="bigcont">
+      <div id="cont">
+        <button id="btn1" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn2" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn3" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn4" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn5" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn6" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn7" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn8" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn9" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn10" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn11" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn12" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn13" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn14" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn15" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn16" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn17" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn18" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn19" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn20" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn21" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn22" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn23" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn24" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn25" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn26" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn27" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn28" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn29" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn30" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn31" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn32" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn33" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn34" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn35" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+        <button id="btn36" class="btn">
+          <img class="btn-img" src="imgs/0.png" alt="" />
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("bigcont").style.display = "none";
+    document.getElementById("userCont").style.display = "none";
+    document.getElementById("oppNameCont").style.display = "none";
+    document.getElementById("valueCont").style.display = "none";
+    document.getElementById("whosTurn").style.display = "none";
+
+    const socket = io();
+
+    let name;
+    let gameTable = [];
+    let turn = "";
+    let played = [];
+    let playedCount = 0;
+    let targetName = "";
+    let score = 0;
+    let targetScore = 0;
+    let currentOpen = [];
+    let players = [];
+
+    function initialGame(data) {
+      turn = data.turn;
+      let table = data.table;
+      gameTable = table;
+      played = data.played;
+      for (let i = 0; i < table.length; i++) {
+        let imgId = i + 1;
+        let btnData = document.getElementById("btn" + imgId);
+        let imgData = btnData.querySelector(".btn-img");
+        imgData.src = "imgs/" + table[i] + ".svg";
+      }
+    }
+
+    document.getElementById("find").addEventListener("click", function () {
+      name = document.getElementById("name").value;
+      document.getElementById("user").innerText = name;
+      if (name == null || name == "") {
+        alert("Please enter a name");
+      } else {
+        socket.emit("find", { name: name });
+
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("find").disabled = true;
+      }
+    });
+
+    function getBtn(id) {
+      return document.getElementById("btn" + id);
+    }
+
+    function getImg(id) {
+      return getBtn(id).querySelector(".btn-img");
+    }
+    function getMyScore() {
+      return getMyData().score;
+      //return parseInt(document.getElementById("user-score").value);
+    }
+    function getTargetScore() {
+      return getTargetData().score;
+    }
+    function updateMyScore(score) {
+      let data = getMyData();
+      data.score = score;
+      document.getElementById("user-score").innerHTML = score;
+    }
+    function updateTargetScore(score) {
+      let data = getTargetData();
+      data.score = score;
+      document.getElementById("target-score").innerHTML = score;
+    }
+
+    function getMyData() {
+      const foundObject = players.find(
+        (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
+      );
+      foundObject.p1.p1name == `${name}`
+        ? (oppName = foundObject.p2.p2name)
+        : (oppName = foundObject.p1.p1name);
+      foundObject.p1.p1name == `${name}`
+        ? (value = foundObject.p1.p1value)
+        : (value = foundObject.p2.p2value);
+      let data = {};
+      if (foundObject.p1.p1name == name) {
+        return foundObject.p1;
+      } else {
+        return foundObject.p2;
+      }
+    }
+
+    function getTargetData() {
+      const foundObject = players.find(
+        (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
+      );
+      foundObject.p1.p1name == `${name}`
+        ? (oppName = foundObject.p2.p2name)
+        : (oppName = foundObject.p1.p1name);
+      foundObject.p1.p1name == `${name}`
+        ? (value = foundObject.p1.p1value)
+        : (value = foundObject.p2.p2value);
+      let data = {};
+      if (foundObject.p1.p1name == name) {
+        return foundObject.p2;
+      } else {
+        return foundObject.p1;
+      }
+    }
+
+    function updateMyTurn() {
+      document.getElementById("userCont").classList.add("my-turn");
+      document.getElementById("oppNameCont").classList.remove("target-turn");
+    }
+    function updateTargetTurn() {
+      document.getElementById("userCont").classList.remove("my-turn");
+      document.getElementById("oppNameCont").classList.add("target-turn");
+    }
+
+    function endGame() {
+      let myScore = getMyScore();
+      let targetScore = getTargetScore();
+      if (myScore == targetScore) {
+        alert("เสมอกัน!");
+      } else if (myScore > targetScore) {
+        alert("คุณชนะ!");
+      } else {
+        alert("คุณแพ้!");
+      }
+      location.reload();
+      resetGame();
+    }
+    function resetGame() {
+      name = undefined;
+      gameTable = [];
+      turn = "";
+      played = [];
+      playedCount = 0;
+      targetName = "";
+      score = 0;
+      targetScore = 0;
+      currentOpen = [];
+      players = [];
+    }
+
+    socket.on("gameStart", (e) => {
+      let allPlayersArray = e.allPlayers;
+      players = e.allPlayers;
+      initialGame(e);
+      if (name != "") {
+        document.getElementById("userCont").style.display = "block";
+        document.getElementById("oppNameCont").style.display = "block";
+        document.getElementById("valueCont").style.display = "block";
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("name").style.display = "none";
+        document.getElementById("find").style.display = "none";
+        document.getElementById("enterName").style.display = "none";
+        document.getElementById("bigcont").style.display = "block";
+        document.getElementById("whosTurn").style.display = "block";
+        document.getElementById("whosTurn").innerText = "X's Turn";
+      }
+
+      let oppName;
+      let value;
+
+      const foundObject = allPlayersArray.find(
+        (obj) => obj.p1.p1name == `${name}` || obj.p2.p2name == `${name}`
+      );
+      foundObject.p1.p1name == `${name}`
+        ? (oppName = foundObject.p2.p2name)
+        : (oppName = foundObject.p1.p1name);
+      foundObject.p1.p1name == `${name}`
+        ? (value = foundObject.p1.p1value)
+        : (value = foundObject.p2.p2value);
+
+      document.getElementById("oppName").innerText = oppName;
+      document.getElementById("value").innerText = value;
+      targetName = oppName;
+      if (turn == name) {
+        updateMyTurn();
+      } else {
+        updateTargetTurn();
+      }
+    });
+
+    document.querySelectorAll(".btn").forEach((e) => {
+      e.addEventListener("click", function () {
+        if (turn != name) {
+          return;
+        }
+        let btnId = parseInt(e.id.replace("btn", ""));
+        if (played.includes(btnId)) {
+          return;
+        }
+        if (playedCount == 1 && currentOpen.includes(btnId)) {
+          return;
+        }
+        let currentTurn = turn + "";
+        playedCount = playedCount + 1;
+        if (playedCount >= 2) {
+          turn = targetName;
+          playedCount = 0;
+        }
+        socket.emit("clickImg", {
+          name: name,
+          value: btnId,
+          playedCount,
+          currentTurn,
+          turn,
+        });
+      });
+    });
+    socket.on("playing", (e) => {
+      if (currentOpen.length >= 2) {
+        for (i = 0; i < currentOpen.length; i++) {
+          getImg(currentOpen[i]).classList.remove("show");
+        }
+        currentOpen = [];
+      }
+      turn = e.turn;
+      let btnData = document.getElementById("btn" + e.value);
+      let imgData = btnData.querySelector(".btn-img");
+      imgData.classList.add("show");
+      currentOpen.push(e.value);
+      if (currentOpen.length == 2) {
+        if (getImg(currentOpen[0]).src == getImg(currentOpen[1]).src) {
+          if (e.currentTurn == name) {
+            let myScore = getMyScore();
+            let newScore = myScore + 3;
+            updateMyScore(newScore);
+          } else {
+            let targetScore = getTargetScore();
+            let newScore = targetScore + 3;
+            updateTargetScore(newScore);
+          }
+          fadeImg(currentOpen[0]);
+          fadeImg(currentOpen[1]);
+          played.push(currentOpen[0]);
+          played.push(currentOpen[1]);
+          if (played.length == 36) {
+            endGame();
+          }
+        } else {
+          if (e.currentTurn == name) {
+            let myScore = getMyScore();
+            let newScore = myScore - 1;
+            updateMyScore(newScore);
+          } else {
+            let targetScore = getTargetScore();
+            let newScore = targetScore - 1;
+            updateTargetScore(newScore);
+          }
+        }
+      }
+      if (turn == name) {
+        updateMyTurn();
+      } else {
+        updateTargetTurn();
+      }
+    });
+
+    function fadeImg(id) {
+      setTimeout(() => {
+        let img = getImg(id);
+        let btn = getBtn(id);
+        img.style.opacity = 0;
+        btn.style.opacity = 0;
+        setTimeout(() => {
+          btn.classList.add("hidden");
+          img.classList.remove("show");
+        }, 1000);
+      }, 300);
+    }
+  </script>
+</html>
